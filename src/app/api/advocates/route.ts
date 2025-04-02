@@ -1,12 +1,13 @@
 import db from "../../../db";
 import { advocates } from "../../../db/schema";
-import { advocateData } from "../../../db/seed/advocates";
+// import { advocateData } from "../../../db/seed/advocates";
 
 export async function GET() {
-  // Uncomment this line to use a database
-  const data = await db.select().from(advocates);
-  console.log("data", data)
-  // const data = advocateData;
-
-  return Response.json({ data });
+  try {
+    const data = await db.select().from(advocates);
+    return Response.json({ data });
+  } catch (error: any) {
+    console.error("Database error:", error);
+    return Response.json({ message: 'Failed to fetch data' }, { status: 500 });
+  }
 }
