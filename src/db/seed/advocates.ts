@@ -175,4 +175,4 @@ const advocateData = [
   },
 ];
 
-export { advocateData };
+export  { advocateData };
