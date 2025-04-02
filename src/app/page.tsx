@@ -9,17 +9,32 @@ export default function Home() {
   const [advocates, setAdvocates] = useState([]);
   const [filteredAdvocates, setFilteredAdvocates] = useState([]);
   const [searchTerm, setSearchTerm] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    console.log("fetching advocates...");
-    fetch("/api/advocates")
-    .then((response) => {response.json()
-    .then((jsonResponse) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/advocates");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const jsonResponse = await response.json();
         setAdvocates(jsonResponse.data);
         setFilteredAdvocates(jsonResponse.data);
-      });
-    });
+      } catch (err) {
+        setError(err as Error)
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
+
+  if (loading) {
+    return <h1 className="text-center">Fetching Advocates...</h1>
+  }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value.toLowerCase();
@@ -45,9 +60,11 @@ export default function Home() {
     setFilteredAdvocates(advocates);
   };
 
-  return (
-    <main style={{ margin: "24px" }}>
-      <h1>Solace Advocates</h1>
+
+      return (
+    <>
+     <main style={{ margin: "24px" }}>
+      <h1 className="text-center">Solace Advocates</h1>
       <br />
       <br />
       <div>
@@ -67,5 +84,7 @@ export default function Home() {
         </tbody>
       </table>
     </main>
+    </>
+   
   );
 }

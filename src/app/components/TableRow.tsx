@@ -1,11 +1,10 @@
 import { Advocate } from "../types";
-
+import { formatPhoneNumber } from "../utils";
 interface TableRowProps {
   advocates: Advocate[];
 }
 
 export function AdvocatesRows({ advocates }: TableRowProps): JSX.Element {
-  console.log("ADVOCATES", advocates);
   const advocatesList = advocates.map((advocate, index) => {
     return (
       <tr key={index}>
@@ -19,7 +18,7 @@ export function AdvocatesRows({ advocates }: TableRowProps): JSX.Element {
           ))}
         </td>
         <td>{advocate.yearsOfExperience}</td>
-        <td>{advocate.phoneNumber}</td>
+        <td>{formatPhoneNumber(advocate.phoneNumber)}</td>
       </tr>
     );
   });
