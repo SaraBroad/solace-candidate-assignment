@@ -5,9 +5,9 @@ interface TableRowProps {
 }
 
 export function AdvocatesRows({ advocates }: TableRowProps): JSX.Element {
-  const advocatesList = advocates.map((advocate, index) => {
+  const advocatesList = advocates.map((advocate) => {
     return (
-      <tr key={index}>
+      <tr key={advocate.id}>
         <td>{advocate.firstName}</td>
         <td>{advocate.lastName}</td>
         <td>{advocate.city}</td>
