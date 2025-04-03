@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TableColumns() {
+export function TableColumns() {
   return (
     <thead>
       <tr>
