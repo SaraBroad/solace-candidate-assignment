@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Advocate } from "./types";
-import TableColumn from "./components/TableColumns";
+import TableColumns from "./components/TableColumns";
 import { AdvocatesRows } from "./components/TableRow";
 
 export default function Home() {
@@ -79,7 +79,7 @@ export default function Home() {
       </div>
       <div style={{ marginTop: "24px" }}>
         <table className="min-w-full">
-          <TableColumn />
+          <TableColumns />
           <tbody>
             <AdvocatesRows advocates={filteredAdvocates} />
           </tbody>
