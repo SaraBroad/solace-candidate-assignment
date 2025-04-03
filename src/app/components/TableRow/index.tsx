@@ -1,10 +1,10 @@
-import { Advocate } from "../types";
-import { formatPhoneNumber } from "../utils";
+import { Advocate } from "../../types";
+import { formatPhoneNumber } from "../../utils";
 interface TableRowProps {
   advocates: Advocate[];
 }
 
-export function AdvocatesRows({ advocates }: TableRowProps): JSX.Element {
+export function TableRows({ advocates }: TableRowProps): JSX.Element {
   const advocatesList = advocates.map((advocate) => {
     return (
       <tr key={advocate.id}>

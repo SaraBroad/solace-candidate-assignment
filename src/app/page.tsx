@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { Advocate } from "./types";
-import TableColumns from "./components/TableColumns";
-import { AdvocatesRows } from "./components/TableRow";
+import { TableColumns } from "./components/TableColumns";
+import { TableRows } from "./components/TableRow";
 
 export default function Home() {
   const [advocates, setAdvocates] = useState([]);
@@ -20,7 +20,6 @@ export default function Home() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const jsonResponse = await response.json();
-        console.log("jsonResponse", jsonResponse);
         setAdvocates(jsonResponse.data);
         setFilteredAdvocates(jsonResponse.data);
       } catch (err) {
@@ -81,7 +80,7 @@ export default function Home() {
         <table className="min-w-full">
           <TableColumns />
           <tbody>
-            <AdvocatesRows advocates={filteredAdvocates} />
+            <TableRows advocates={filteredAdvocates} />
           </tbody>
         </table>
       </div>
